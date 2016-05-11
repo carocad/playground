@@ -14,8 +14,8 @@
 
 ;; internal configuration, you shouldn't change this or bad things could happen
 
-(def playground-plugin-dir (files/lt-user-dir "playground"))
-(def baby-cljs-path (files/join user-plugin-dir "src" "lt" "plugins" "baby_steps.cljs"))
+(def playground-plugin-dir (files/join (files/lt-user-dir) "plugins" "playground"))
+(def baby-cljs-path (files/join playground-plugin-dir "src" "lt" "plugins" "baby_steps.cljs"))
 
 (defui playground-btn []
   [:button "playground"]
