@@ -1,0 +1,5 @@
+[
+ [:app :lt.objs.plugins/load-js "playground_compiled.js"]
+ [:app :-lt.objs.intro/show-intro];; don't show old intro
+ [:playground.hello :lt.plugins.playground/show-intro]
+ ]
