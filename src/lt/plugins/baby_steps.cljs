@@ -9,16 +9,19 @@
 ;; First of all, connect to this project.
 ;; then establish a connection to lighttable by evaling the complete file and
 ;; select Lighttable UI
+(comment to avoid having compilation errors, the following code is ignored by the reader
+  through the use of #_(), in order to use it just take out the reader-ignore literal "#_"
+  and everything should be fine)
 
 ;; LETS GET STARTED
 
 ;; you get the current editor like this
-(pool/last-active)
+#_(pool/last-active)
 ;; that failed, didn't it? well an editor seems to be a javascript object so it
 ;; it can't be properly printed. BUT it can be assigned
 
 ;; lets check that out
-(let [editor (pool/last-active)
+#_(let [editor (pool/last-active)
       meta   {:end-line 19 :line 2 :end-column 40}
       loc    {:line (dec (:end-line meta))
               :ch (:end-column meta)
@@ -31,7 +34,7 @@
 ;; the :editor.result behavior shows a blue widget with the supplied message
 
 ;; but how about displayingt the message not to the right?
-(let [editor (pool/last-active)
+#_(let [editor (pool/last-active)
       meta   {:end-line 32 :line 2 :end-column 40}
       loc    {:line (dec (:end-line meta))
               :ch (:end-column meta)
@@ -43,7 +46,7 @@
 ;; result expands the gutter to make the result fit under the specified line
 
 ;; how about those pesky exceptions? I want to create those
-(let [editor (pool/last-active)
+#_(let [editor (pool/last-active)
       meta   {:end-line 44 :line 2 :end-column 40}
       loc    {:line (dec (:end-line meta))
               :ch (:end-column meta)
@@ -53,7 +56,7 @@
 ;; did you notice that exceptions are always displayed underline?
 
 ;; how about showing a message to the user?
-(notifos/set-msg! "HELLO MESSAGE" {:class "my-class"})
+#_(notifos/set-msg! "HELLO MESSAGE" {:class "my-class"})
 ;; try changing :class to "error"
 ;; BTW: notifos have a timeout so you better make clear what you want to show !
 ;;      they also dissapear if another notifo is created
@@ -67,10 +70,10 @@
 ;; for a deep explanation of it check: http://www.chris-granger.com/2013/01/24/the-ide-as-data/
 ;; let's focus on our playground. A very basic object is like this:
 
-(defui hello-panel []
+#_(defui hello-panel []
   [:h1 "Hello from the playground"])
 
-(behavior ::on-close-destroy
+#_(behavior ::on-close-destroy
           :triggers #{:close}
           :desc "Close tab and tabset as well if last tab"
           :reaction (fn [this]
@@ -79,7 +82,7 @@
                           (tabs/rem-tabset tabset)))
                       (object/raise this :destroy)))
 
-(object/object* ::hello-object
+#_(object/object* ::hello-object
                 :behaviors [::on-close-destroy]
                 :init (fn [this] (hello-panel)))
 
@@ -100,7 +103,7 @@
 ;; to attach the behavior ::on-close-destroy to the object.
 
 ;; too much theory, lets play. Create a tab with that hello panel
-(let [hello (object/create ::hello-object)];there it is, your new brand object
+#_(let [hello (object/create ::hello-object)];there it is, your new brand object
   (tabs/add-or-focus! hello))
 ;; that should create a tabset in your current tab and pass the focus to it
 ;; try closing it .... surprised? probably not. Move it to another tab and then
@@ -114,7 +117,7 @@
 ;; they are called only by the user and they mainly associate user intentions
 ;; with the BOT architecture
 
-(cmd/command {:command ::say-hello
+#_(cmd/command {:command ::say-hello
               :desc "Playground's greating"
               :exec (fn []
                       (let [hello (object/create ::hello-object)]
@@ -126,7 +129,7 @@
 
 ;; TODO: what do you think that the following code does?
 ;; try to guess it and check it out ;)
-(let [editor (pool/last-active)
+#_(let [editor (pool/last-active)
         meta {:end-line 127 :line 2 :end-column 40}
         loc  {:line (dec (:end-line meta))
               :ch (:end-column meta)
