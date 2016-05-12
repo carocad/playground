@@ -19,3 +19,10 @@ The first, opens an introduction to Lighttable internals. You can learn about ba
 
 The last one is simply a new intro page that replaces Lighttable's original intro page with a little teaser for developers.
 
+## License
+
+Copyright © 2015 Camilo Roca
+
+Distributed under the LGPL v3.
+
+
