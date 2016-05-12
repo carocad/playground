@@ -6,9 +6,7 @@
             [lt.objs.style :as style]
             [lt.objs.files :as files]
             [lt.objs.intro :as lt-intro]
-            [lt.objs.editor.pool :as pool]
             [crate.binding :refer [bound]]
-            [lt.objs.notifos :as notifos]
             [lt.objs.workspace :as workspace])
   (:require-macros [lt.macros :refer [defui behavior]]))
 
