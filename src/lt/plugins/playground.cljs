@@ -1,5 +1,6 @@
 (ns lt.plugins.playground
   (:require [lt.util.dom :as dom]
+            [lt.objs.cli :as cli]
             [lt.object :as object]
             [lt.objs.tabs :as tabs]
             [lt.objs.command :as cmd]
@@ -12,12 +13,14 @@
 
 ;; internal configuration, you shouldn't change this or bad things could happen
 
-(def playground-plugin-dir (files/join (files/lt-user-dir) "plugins" "playground"))
-(def baby-cljs-path (files/join playground-plugin-dir "src" "lt" "plugins" "baby_steps.cljs"))
+;(def playground-plugin-dir (files/join (files/lt-user-dir) "plugins" "playground"))
+;(def baby-cljs-path (files/join playground-plugin-dir "src" "lt" "plugins" "baby_steps.cljs"))
+;(def playground-plugin-dir "/home/camilo/.config/Lighttable/plugins playground")
+;(def baby-cljs-path (files/join playground-plugin-dir "src" "lt" "plugins" "baby_steps.cljs"))
 
 (defui playground-btn []
   [:button "playground"]
-  :click (fn [] (cmd/exec! :open-path baby-cljs-path)))
+  :click (fn [] (cmd/exec! :open-path (files/join (files/lt-user-dir) "plugins" "playground" "src" "lt" "plugins" "baby_steps.cljs"))))
 
 (object/object* ::intro
                 :tags #{:intro}
@@ -56,8 +59,10 @@
 
 (cmd/command {:command ::open-playground
               :desc "Playground: playground script"
-              :exec (fn [] (cmd/exec! :open-path baby-cljs-path))})
+              :exec (fn [] (cmd/exec! :open-path (files/join (files/lt-user-dir) "plugins" "playground"
+                                                   "src" "lt" "plugins" "baby_steps.cljs")))})
 
 (cmd/command {:command :user.add-user-plugin-to-workspace
               :desc "Playground: Add playground plugin to workspace"
-              :exec (fn [] (object/raise workspace/current-ws :add.folder! playground-plugin-dir))})
+              :exec (fn [] (object/raise workspace/current-ws :add.folder!
+                             (files/join (files/lt-user-dir) "plugins" "playground")))})
